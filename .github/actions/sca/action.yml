@@ -1,0 +1,10 @@
+name: sca
+description: Dependency scan (composite)
+runs:
+  using: composite
+  steps:
+    # osv-scanner is only mentioned in this comment on purpose: comments must not count
+    - run: |
+        go install github.com/google/osv-scanner/cmd/osv-scanner@v1
+        osv-scanner -r .
+      shell: bash
